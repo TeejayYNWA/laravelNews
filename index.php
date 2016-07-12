@@ -43,17 +43,20 @@
             text-align: center;
         }
 
-        .container .jumbotron, .container-fluid .jumbotron {
-            padding-left: 10px;
-
-        }
-
-        #side-nav ul li a {
+        #side-nav ul li {
             border-bottom: 1px solid lightgray;
             display: block;
             color: black;
+            font-weight: bold;
         }
 
+        #side-nav ul li:last-child {
+            border-bottom: none;
+        }
+
+        #side-nav ul li a{
+            color: black;
+        }
         #sponsor {
             border-bottom: 1px solid lightgray;
             padding-bottom: 20px;
@@ -65,10 +68,21 @@
 
         #icons a {
             color: gray;
+
         }
 
         #recently {
             color: gray;
+            font-style: italic;
+        }
+
+        #SUTD {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        #Dtime {
+            font-style: italic;
         }
 
         .navbar {
@@ -80,13 +94,38 @@
             float: none;
         }
 
+        #site-navigation a:hover {
+           color: #f4645f ;
+        }
+
+        #side-nav a:hover {
+            text-decoration: underline;
+
+        }
+
+        .container .jumbotron, .container-fluid .jumbotron {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #subscribe {
+            padding-left: 22px;
+        }
+
+        nav > li > a:focus, .nav > li > a:hover {
+            background-color: transparent;
+        }
+
+        #topCon {
+            border-top: 2px solid black ;
+        }
     </style>
 
 
 </head>
 
 <body>
-
+<div id="topCon">
 <div class="container">
     <div class="row">
         <h6 id="icons">
@@ -130,21 +169,19 @@
 
         <div class="col-lg-3 col-lg-offset-1">
             <div class="jumbotron">
-                <h5 class="text-center">Stay Up To Date</h5>
-                <p class="text-center">Join the weekly news letter and we'll send you junk mail</p>
+                <h5 id="SUTD">Stay Up To Date</h5>
+                <p id="Junkletter">Join the weekly news letter and we'll send you junk mail</p>
                 <div class="row">
                     <form method="post" action="#">
-                        <div class="col-lg-9">
+                        <div id="subscribe" class="col-lg-8">
                             <div class="form-group">
                                 <input type="email" class="form-control" name="email" id="email" placeholder="Email"/>
                             </div>
                         </div>
-                        <div class="col-lg-2">
                             <button class="btn btn-default btn-sm">Subscribe</button>
-                        </div>
                     </form>
                 </div>
-                <p class="text-center">Delivered every 30 seconds</p>
+                <p  id="Dtime" class="text-center">Delivered every 30 seconds</p>
             </div>
         </div>
 
@@ -185,6 +222,7 @@
 
         </article>
     </div>
+</div>
 </div>
 </body>
 
