@@ -1,0 +1,113 @@
+#header {
+    padding-bottom: 50px;
+}
+
+#article {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+#image {
+    padding-bottom: 20px;
+}
+
+#site-navigation a {
+    text-align: center;
+    color: gray;
+}
+
+#site-navigation {
+    border-bottom: 1px solid lightgray;
+    border-top: 1px solid lightgray;
+
+}
+
+#side-nav ul li {
+    border-bottom: 1px solid #ebebeb;
+    display: block;
+    color: black;
+    font-weight: bold;
+}
+
+#side-nav ul li:last-child {
+    border-bottom: none;
+}
+
+#side-nav ul li a{
+    color: black;
+}
+#sponsor {
+    border-bottom: 1px solid lightgray;
+    padding-bottom: 20px;
+}
+
+#icons {
+    float: right;
+}
+
+#icons a {
+    color: gray;
+
+}
+
+#recently {
+    color: gray;
+    font-style: italic;
+}
+
+#SUTD {
+    font-weight: bold;
+    text-align: center;
+}
+
+#Dtime {
+    font-style: italic;
+}
+
+.navbar {
+    text-align: center;
+}
+
+.navbar .navbar-nav {
+    display: inline-block;
+    float: none;
+}
+
+#site-navigation a:hover {
+    color: #f4645f ;
+}
+
+#side-nav a:hover {
+    text-decoration: underline;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#subscribe {
+    padding-left: 22px;
+}
+
+nav > li > a:focus, .nav > li > a:hover {
+    background-color: transparent;
+}
+
+#topCon {
+    border-top: 2px solid black ;
+}
+
+#Emailbox {
+    background-color: gainsboro;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h3 {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}

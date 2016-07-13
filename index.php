@@ -5,7 +5,7 @@
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
           integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="/Stylesheet.css">
 
     <?php
     $db = new PDO('mysql:host=localhost;dbname=laravelpage;charset=utf8mb4', 'root', 'Taxi1208');
@@ -20,168 +20,97 @@
     $infoArraySecond = $pageInfoSelectOther->fetchAll(PDO::FETCH_ASSOC);
 
 
-    $navInfo =  $_GET['nav'];
+    $navInfo = $_GET['nav'];
     //var_dump( $navInfo );
 
     ?>
-
-
-    <style>
-        #site-navigation a {
-            text-align: center;
-            color: gray;
-        }
-
-        #site-navigation {
-            border-bottom: 1px solid lightgray;
-            border-top: 1px solid lightgray;
-
-        }
-
-        .jumbotron p {
-            font-size: x-small;
-            text-align: center;
-        }
-
-        #side-nav ul li {
-            border-bottom: 1px solid lightgray;
-            display: block;
-            color: black;
-            font-weight: bold;
-        }
-
-        #side-nav ul li:last-child {
-            border-bottom: none;
-        }
-
-        #side-nav ul li a{
-            color: black;
-        }
-        #sponsor {
-            border-bottom: 1px solid lightgray;
-            padding-bottom: 20px;
-        }
-
-        #icons {
-            float: right;
-        }
-
-        #icons a {
-            color: gray;
-
-        }
-
-        #recently {
-            color: gray;
-            font-style: italic;
-        }
-
-        #SUTD {
-            font-weight: bold;
-            text-align: center;
-        }
-
-        #Dtime {
-            font-style: italic;
-        }
-
-        .navbar {
-            text-align: center;
-        }
-
-        .navbar .navbar-nav {
-            display: inline-block;
-            float: none;
-        }
-
-        #site-navigation a:hover {
-           color: #f4645f ;
-        }
-
-        #side-nav a:hover {
-            text-decoration: underline;
-
-        }
-
-        .container .jumbotron, .container-fluid .jumbotron {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        #subscribe {
-            padding-left: 22px;
-        }
-
-        nav > li > a:focus, .nav > li > a:hover {
-            background-color: transparent;
-        }
-
-        #topCon {
-            border-top: 2px solid black ;
-        }
-    </style>
-
 
 </head>
 
 <body>
 <div id="topCon">
-<div class="container">
-    <div class="row">
-        <h6 id="icons">
-            <a href="http://www.gmail.com"><span class="glyphicon glyphicon-send"></span></a>
-            <a href="http://www.twitter.com"><span class="glyphicon glyphicon-plane"></span></a>
-            <a href="http://www.facebook.com"><span class="glyphicon glyphicon-thumbs-up"></span></a>
-            <a href="http://www.apple.com/uk/"><span class="glyphicon glyphicon-apple"></span></a>
-        </h6>
-    </div>
-    <header>
-        <h1 class="text-center">Laravel News</h1>
-        <nav class="navbar" id="site-navigation">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#" title="podcast">PODCAST</a>
-                </li>
-                <li>
-                    <a href="#" title="newsletter">NEWSLETTER</a>
-                </li>
-                <li>
-                    <a href="#" title="archive">ARCHIVE</a>
-                </li>
-                <li>
-                    <a href="#" title="membership">MEMBERSHIP</a>
-                </li>
-                <li>
-                    <a href="#" title="sponsor">SPONSOR</a>
-                </li>
-        </nav>
-        <h5 id="sponsor" class="text-center">Sponsor <?php echo $infoArray['title']; ?></h5>
-    </header>
-    <br>
-    <br>
+    <div class="container">
+        <div class="row">
+            <h6 id="icons">
+                <a href="http://www.gmail.com"><span class="glyphicon glyphicon-send"></span></a>
+                <a href="http://www.twitter.com"><span class="glyphicon glyphicon-plane"></span></a>
+                <a href="http://www.facebook.com"><span class="glyphicon glyphicon-thumbs-up"></span></a>
+                <a href="http://www.apple.com/uk/"><span class="glyphicon glyphicon-apple"></span></a>
+            </h6>
+        </div>
+        <header id="header">
+            <h1 class="text-center">Laravel News</h1>
+            <nav class="navbar" id="site-navigation">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" title="podcast">PODCAST</a>
+                    </li>
+                    <li>
+                        <a href="#" title="newsletter">NEWSLETTER</a>
+                    </li>
+                    <li>
+                        <a href="#" title="archive">ARCHIVE</a>
+                    </li>
+                    <li>
+                        <a href="#" title="membership">MEMBERSHIP</a>
+                    </li>
+                    <li>
+                        <a href="#" title="sponsor">SPONSOR</a>
+                    </li>
+            </nav>
+            <h5 id="sponsor" class="text-center">Sponsor <?php echo $infoArray['title']; ?></h5>
+        </header>
 
-    <div class="row">
-        <div class="col-lg-8">
-            <h3 class="text-center"><?php echo $infoArray['title']; ?></h3>
+        <div class="col-lg-7">
+            <div class="row">
 
-            <img src="/cmv" alt="pic" class="centerl center-block img-responsive">
+                <?php if ($navInfo == "") { ?>
+                    <?php foreach ($infoArray as $info): ?>
+                        <article id="article">
+                            <h3><?php echo $info['title'] ?></h3>
+
+                            <img id="image" src="/cmv" alt="pic" class="centerl center-block img-responsive">
+                            <?php echo $info['content']; ?>
+
+                        </article>
+                    <?php endforeach;
+                } ?>
+
+                <?php if ($navInfo == "1") { ?>
+                    <?php foreach ($infoArraySecond as $info5): ?>
+                        <article id="article">
+                            <h3><?php echo $info5['title'] ?></h3>
+
+                            <img id="image" src="/cmv" alt="pic" class="centerl center-block img-responsive">
+                            <?php echo $info5['content']; ?>
+                           
+                        </article>
+                    <?php endforeach;
+                } ?>
+            </div>
+            <nav>
+                <ul class="pager">
+                    <li><a href="/">Prev</a></li>
+                    <li><a href="/?nav=1">Next</a></li>
+                </ul>
+            </nav>
         </div>
 
         <div class="col-lg-3 col-lg-offset-1">
-            <div class="jumbotron">
+            <div class="text-center" id="Emailbox">
                 <h5 id="SUTD">Stay Up To Date</h5>
                 <p id="Junkletter">Join the weekly news letter and we'll send you junk mail</p>
-                <div class="row">
-                    <form method="post" action="#">
-                        <div id="subscribe" class="col-lg-8">
-                            <div class="form-group">
-                                <input type="email" class="form-control" name="email" id="email" placeholder="Email"/>
-                            </div>
-                        </div>
+                <div>
+                    <form method="post" action="#" class="form-inline">
+                        <div class="row">
+                            <input type="email" class="form-control" name="email" id="email"
+                                   placeholder="Email"/>
                             <button class="btn btn-default btn-sm">Subscribe</button>
+                        </div>
+
                     </form>
                 </div>
-                <p  id="Dtime" class="text-center">Delivered every 30 seconds</p>
+                <p id="Dtime" class="text-center">Delivered every 30 seconds</p>
             </div>
         </div>
 
@@ -199,39 +128,10 @@
         </div>
 
     </div>
-    <div class="col-lg-7">
-        <article>
-
-            <?php  if( $navInfo == ""){ ?>
-            <?php foreach ($infoArray as $info):?>
-
-                <h3><?php echo $info['title']?></h3>
-                   <?php echo $info['content'];?>
-                <br>
-            <?php endforeach;
-            }?>
-
-            <?php  if( $navInfo == "1"){ ?>
-                <?php foreach ($infoArraySecond as $info5):?>
-
-                    <h3><?php echo $info5['title']?></h3>
-                    <?php echo $info5['content'];?>
-                    <br>
-                <?php endforeach;
-            }?>
-
-        </article>
-    </div>
-</div>
 </div>
 </body>
+</html>
 
-<nav>
-    <ul class="pager">
-        <li><a href="/">Previous</a></li>
-        <li><a href="/?nav=1">Next</a></li>
-    </ul>
-</nav>
 
 
 
