@@ -8,21 +8,25 @@
     <link rel="stylesheet" href="/Stylesheet.css">
 
     <?php
+
+    $navInfo = $_GET['nav'];
+    //var_dump($navInfo);
+
+    $offCount = $navInfo * 5;
+    //var_dump($offCount);
+
+    $next = $navInfo + 1;
+    $prev = $navInfo - 1;
+
     $db = new PDO('mysql:host=localhost;dbname=laravelpage;charset=utf8mb4', 'root', 'Taxi1208');
     //select statement for side bar
     $articleSelect = $db->query('SELECT * FROM mainArticle');
     $sideBarArray = $articleSelect->fetchAll(PDO::FETCH_ASSOC);
     //select statement for page info 1st5
-    $pageInfoSelect5 = $db->query('SELECT * FROM mainArticle LIMIT 5');
+    $pageInfoSelect5 = $db->query('SELECT * FROM mainArticle LIMIT 5 offset ' . $offCount);
     $infoArray = $pageInfoSelect5->fetchAll(PDO::FETCH_ASSOC);
-    //select statement for page info 2nd5
-    $pageInfoSelectOther = $db->query('SELECT * FROM mainArticle LIMIT 5 offset 5');
-    $infoArraySecond = $pageInfoSelectOther->fetchAll(PDO::FETCH_ASSOC);
-
-
-    $navInfo = $_GET['nav'];
-    //var_dump( $navInfo );
-
+    $RowC = $pageInfoSelect5->rowCount();
+    //var_dump($RowC);
     ?>
 
 </head>
@@ -58,42 +62,49 @@
                         <a href="#" title="sponsor">SPONSOR</a>
                     </li>
             </nav>
-            <h5 id="sponsor" class="text-center">Sponsor <?php echo $infoArray['title']; ?></h5>
+            <h5 id="sponsor" class="text-center">Sponsor</h5>
         </header>
 
         <div class="col-lg-7">
-            <div class="row">
 
-                <?php if ($navInfo == "") { ?>
-                    <?php foreach ($infoArray as $info): ?>
-                        <article id="article">
-                            <h3><?php echo $info['title'] ?></h3>
-
-                            <img id="image" src="/cmv" alt="pic" class="centerl center-block img-responsive">
-                            <?php echo $info['content']; ?>
-
-                        </article>
-                    <?php endforeach;
-                } ?>
-
-                <?php if ($navInfo == "1") { ?>
-                    <?php foreach ($infoArraySecond as $info5): ?>
-                        <article id="article">
-                            <h3><?php echo $info5['title'] ?></h3>
-
-                            <img id="image" src="/cmv" alt="pic" class="centerl center-block img-responsive">
-                            <?php echo $info5['content']; ?>
-                           
-                        </article>
-                    <?php endforeach;
-                } ?>
-            </div>
+        <?php if ($RowC == 0): ?>
+            <div id="alert" class="alert alert-danger" role="alert">No more articles to display</div>
             <nav>
                 <ul class="pager">
-                    <li><a href="/">Prev</a></li>
-                    <li><a href="/?nav=1">Next</a></li>
+                    <li><a href="/?nav=<?php echo $prev; ?>">Prev</a></li>
                 </ul>
             </nav>
+        <?php endif; ?>
+
+        <?php if ($RowC !==0): ?>
+            <div class="row">
+                <?php foreach ($infoArray as $info): ?>
+                    <article id="article">
+                        <h3><?php echo $info['title'] ?></h3>
+
+                        <img id="image" src="/cmv" alt="pic" class="centerl center-block img-responsive">
+                        <?php echo $info['content']; ?>
+
+                    </article>
+                <?php endforeach; ?>
+            </div>
+            <?php if ($offCount < 1): ?>
+                <nav>
+                    <ul class="pager">
+                        <li><a href="/?nav=<?php echo $next; ?>">Next</a></li>
+                    </ul>
+                </nav>
+            <?php endif; ?>
+            <?php if ($offCount !== 0): ?>
+                <nav>
+                    <ul class="pager">
+                        <li><a href="/?nav=<?php echo $prev; ?>">Prev</a></li>
+                        <li><a href="/?nav=<?php echo $next; ?>">Next</a></li>
+                    </ul>
+                </nav>
+            <?php endif; ?>
+        <?php endif;?>
+
         </div>
 
         <div class="col-lg-3 col-lg-offset-1">
@@ -112,9 +123,7 @@
                 </div>
                 <p id="Dtime" class="text-center">Delivered every 30 seconds</p>
             </div>
-        </div>
 
-        <div class="col-lg-3 col-lg-offset-1">
             <h5 id="recently" class="text-center"> -- Recently -- </h5>
             <nav id="side-nav">
                 <ul class="nav text-center">

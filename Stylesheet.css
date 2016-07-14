@@ -7,6 +7,10 @@
     border-bottom: 1px solid #ebebeb;
 }
 
+#article:last-child {
+    border-bottom: none;
+}
+
 #image {
     padding-bottom: 20px;
 }
@@ -53,6 +57,7 @@
 #recently {
     color: gray;
     font-style: italic;
+    padding-top: 50px;
 }
 
 #SUTD {
@@ -81,10 +86,6 @@
     text-decoration: underline;
 }
 
-.container .jumbotron, .container-fluid .jumbotron {
-    padding-left: 0;
-    padding-right: 0;
-}
 
 #subscribe {
     padding-left: 22px;
@@ -110,4 +111,8 @@ h3 {
     text-align: center;
     font-weight: bold;
     padding-bottom: 20px;
+}
+
+#alert {
+    text-align: center;
 }
