@@ -1,3 +1,9 @@
+<?php
+require('vendor/autoload.php');
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +24,7 @@
     $next = $navInfo + 1;
     $prev = $navInfo - 1;
 
-    $db = new PDO('mysql:host=localhost;dbname=laravelpage;charset=utf8mb4', 'root', 'Taxi1208');
+    $db = new PDO('mysql:host=' . getenv("HOST") . ';dbname=' . getenv("DATABASE") . ';charset=utf8mb4', getenv("USERNAME"), getenv("PASSWORD"));
     //select statement for side bar
     $articleSelect = $db->query('SELECT * FROM mainArticle');
     $sideBarArray = $articleSelect->fetchAll(PDO::FETCH_ASSOC);
