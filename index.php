@@ -26,10 +26,10 @@ $dotenv->load();
 
     $db = new PDO('mysql:host=' . getenv("HOST") . ';dbname=' . getenv("DATABASE") . ';charset=utf8mb4', getenv("USERNAME"), getenv("PASSWORD"));
     //select statement for side bar
-    $articleSelect = $db->query('SELECT * FROM mainArticle');
+    $articleSelect = $db->query('SELECT * FROM mainArticle order by pubdate desc');
     $sideBarArray = $articleSelect->fetchAll(PDO::FETCH_ASSOC);
     //select statement for page info 1st5
-    $pageInfoSelect5 = $db->query('SELECT * FROM mainArticle LIMIT 5 offset ' . $offCount);
+    $pageInfoSelect5 = $db->query('SELECT * FROM mainArticle order by pubdate desc LIMIT 5 offset ' . $offCount);
     $infoArray = $pageInfoSelect5->fetchAll(PDO::FETCH_ASSOC);
     $RowC = $pageInfoSelect5->rowCount();
     //var_dump($RowC);
